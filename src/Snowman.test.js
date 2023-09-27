@@ -7,12 +7,18 @@ it('should only allow six wrong guesses', function () {
 
   const buttonArea = container.querySelector('.Snowman-letters');
 
-  fireEvent.click(container.findElementByAttribute('key', 'b'));
-  fireEvent.click(container.findElementByAttribute('key', 'c'));
-  fireEvent.click(container.findElementByAttribute('key', 'd'));
-  fireEvent.click(container.findElementByAttribute('key', 'z'));
-  fireEvent.click(container.findElementByAttribute('key', 'y'));
-  fireEvent.click(container.findElementByAttribute('key', 'o'));
+
+  fireEvent.click(buttonArea.querySelector('[value="b"]'));
+  fireEvent.click(container.querySelector('[value="c"]'));
+  fireEvent.click(container.querySelector('[value="d"]'));
+  fireEvent.click(container.querySelector('[value="z"]'));
+  fireEvent.click(container.querySelector('[value="y"]'));
+  fireEvent.click(container.querySelector('[value="o"]'));
+
+  const youLose = container.querySelector('.Snowman-lose');
+  const answer = container.querySelector('.Snowman-word');
 
   expect(buttonArea).not.toBeInTheDocument();
+  expect(youLose).toBeInTheDocument();
+  expect(answer).toEqual("apple");
 });
