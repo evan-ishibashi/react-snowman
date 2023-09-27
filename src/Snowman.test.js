@@ -3,7 +3,7 @@ import Snowman from "./Snowman";
 
 it('should only allow six wrong guesses', function () {
   const { container } = render(
-    <Snowman maxGuesses={6} />);
+    <Snowman words='apple' />);
 
   const buttonArea = container.querySelector('.Snowman-letters');
 
@@ -20,5 +20,12 @@ it('should only allow six wrong guesses', function () {
 
   expect(buttonArea).not.toBeInTheDocument();
   expect(youLose).toBeInTheDocument();
-  expect(answer).toEqual("apple");
+  expect(answer).toContainHTML('<p class="Snowman-word">apple</p>');
+});
+
+it('matches snapshot', function () {
+  const { container } = render(
+    <Snowman />);
+
+  expect(container).toMatchSnapshot();
 });
