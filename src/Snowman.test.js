@@ -29,3 +29,17 @@ it('matches snapshot', function () {
 
   expect(container).toMatchSnapshot();
 });
+
+it('changes to 1st img after first wrong guess', function () {
+  const { container } = render(
+    <Snowman words='apple' />);
+
+  const buttonArea = container.querySelector('.Snowman-letters');
+
+  fireEvent.click(buttonArea.querySelector('[value="b"]'));
+  const img = container.querySelector('img');
+
+  expect(img.getAttribute('src')).toContain('1.png');
+
+})
+
