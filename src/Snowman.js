@@ -24,12 +24,12 @@ import { randomWord, ENGLISH_WORDS } from './words';
  * - answer: selected secret word*
  */
 
+/** by default, allow 6 guesses and use provided gallows images. */
 function Snowman({
   images = [img0, img1, img2, img3, img4, img5, img6],
   words = randomWord(ENGLISH_WORDS),
   maxWrong = images.length - 1,
 }) {
-  /** by default, allow 6 guesses and use provided gallows images. */
 
   const [nWrong, setNWrong] = useState(0);
   const [guessedLetters, setGuessedLetters] = useState(() => new Set());
@@ -44,9 +44,7 @@ function Snowman({
       .map(ltr => (guessedLetters.has(ltr) ? ltr : "_"));
   }
 
-  /** displayAnswer: show word fully revealed upon losing:
-
-   */
+  /** displayAnswer: show word fully revealed upon losing:*/
   function displayAnswer() {
     return answer
       .split("");
